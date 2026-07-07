@@ -1,52 +1,55 @@
-# HealthSync AI - Backend
+# HealthSync AI Backend
 
-HealthSync AI is an enterprise AI-Driven Health Center & Supply Chain Management System. This repository contains the scaffolded Spring Boot backend architecture.
+AI-Driven Health Center & Supply Chain Management Platform.
 
-## Tech Stack
-- **Java 21**
-- **Spring Boot 3.4.1**
-- **Spring Security**
-- **JWT** (JSON Web Tokens via io.jsonwebtoken)
-- **Spring Data JPA**
-- **PostgreSQL**
-- **Flyway** (Database Migrations)
-- **Maven** (Build Tool)
+## Technology Stack
+* Java 21 (Eclipse Temurin JRE)
+* Spring Boot 3.4
+* PostgreSQL & Flyway
+* Spring Security (JWT-based Stateless Auth)
+* Lombok & ModelMapper
+* Swagger / OpenAPI 3
 
-## Project Structure
-The packages are organized under `com.healthsync`:
-
-- `config/`: Core Spring Boot configuration classes (CORS, Swagger, Jackson, etc.).
-- `security/`: Spring Security filters, JWT authentication entry points, and token provider configurations.
-- `auth/`: Dedicated authentication flow components (Login, Registration, Token Refresh).
-- `common/`: Reusable classes, helpers, properties, and base classes.
-- `exception/`: Global Exception Handler and custom business exceptions.
-- Domain Packages (e.g., `patient/`, `doctor/`, `inventory/`, `dashboard/`, `laboratory/`, `district/`, `bed/`, `analytics/`, `ai/`, `notification/`, `report/`):
-  - `controller/`: REST controllers defining public APIs.
-  - `service/`: Domain-specific business logic interfaces and implementations.
-  - `repository/`: Spring Data JPA repositories.
-  - `entity/`: Database JPA entities.
-  - `dto/`: Request/Response data transfer objects.
+---
 
 ## Getting Started
 
-### Prerequisites
-- JDK 21
-- Maven 3.x
-- PostgreSQL
+### Local Setup (Development)
+1. Start local PostgreSQL instance and create database `healthsync_db`.
+2. Configure environment variables or use the default `application-dev.yml` settings.
+3. Build and run:
+   ```bash
+   mvn clean spring-boot:run
+   ```
 
-### Build the Application
+### Compile & Run Tests
+To run all 9 domain integration tests:
 ```bash
-mvn clean package -DskipTests
+mvn clean test
 ```
 
-### Run Locally
-Configure your DB connection in `src/main/resources/application.yml` and run:
+---
+
+## Docker Deployment (Production)
+
+### Multi-stage Build
+The `Dockerfile` is optimized to build the code and run the executable JAR inside a secure, lightweight Alpine JRE environment as a non-root `appuser`.
+
+### Build & Run via Docker Compose
+To build and start both the PostgreSQL database and backend service:
 ```bash
-mvn spring-boot:run
+docker-compose up --build -d
 ```
 
-### Run using Docker
+### Health Check
+Once running, check the container status:
 ```bash
-docker build -t healthsync-backend .
-docker run -p 8080:8080 healthsync-backend
+curl http://localhost:8080/api/health
 ```
+
+---
+
+## API Documentation
+Once the application starts, Swagger/OpenAPI documentation is available at:
+* Swagger UI: [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
+* API Docs JSON: [http://localhost:8080/v3/api-docs](http://localhost:8080/v3/api-docs)
