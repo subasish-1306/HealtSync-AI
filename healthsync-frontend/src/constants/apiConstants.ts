@@ -7,12 +7,12 @@ export const API_KEYS = {
 
 export const API_ROUTES = {
   AUTH: {
-  LOGIN: "/api/auth/login",
-  REGISTER: "/api/auth/register",
-  REFRESH: "/api/auth/refresh",
-  LOGOUT: "/api/auth/logout",
-  ME: "/api/auth/me",
-},
+    LOGIN: "/auth/login",
+    REGISTER: "/auth/register",
+    REFRESH: "/auth/refresh",
+    LOGOUT: "/auth/logout",
+    ME: "/auth/me",
+  },
   INVENTORY: {
     BASE: '/inventory',
     STOCK: (id: string) => `/inventory/${id}/stock`,

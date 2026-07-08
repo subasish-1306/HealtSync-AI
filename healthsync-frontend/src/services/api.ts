@@ -2,9 +2,7 @@ import { apiClient } from '../api/client';
 import { API_ROUTES } from '../constants/apiConstants';
 import { Hospital, InventoryItem, Bed, Doctor, LabTest, RedistributionRequest, Patient, Alert } from '../types/index';
 
-const API_BASE_URL = 
-  import.meta.env.VITE_AI_API_URL ||
-  'https://healtsync-ai-1.onrender.com';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 // Delay helper to simulate network latency for realistic clinical UI loadings
 const simulateLatency = <T>(data: T, delay = 150): Promise<T> => {
