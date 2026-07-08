@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const AI_BASE_URL = 'http://localhost:8000';
-
+const AI_BASE_URL =
+  import.meta.env.VITE_AI_API_URL || "http://localhost:8000";
 export const aiClient = axios.create({
   baseURL: AI_BASE_URL,
   timeout: 15000,
