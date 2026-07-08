@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: ${DB_ANALYTICS_URL:jdbc:postgresql://localhost:5432/healthsync_db}
-    username: postgres
-    password: subha@#1306
+    url: jdbc:postgresql://ep-dry-sound-att0l00f-pooler.c-9.us-east-1.aws.neon.tech/neondb?user=neondb_owner&password=npg_Ok7zPG2IxjEp&sslmode=require&channelBinding=require
+    username: ${DB_USERNAME:neondb_owner}
+    password: ${DB_PASSWORD:npg_Ok7zPG2IxjEp}
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
